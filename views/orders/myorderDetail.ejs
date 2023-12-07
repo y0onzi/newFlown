@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Details</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>주문 상세보기</h1>
+  <table>
+    <tr>
+      <th>꽃 이름</th>
+      <th>꽃 색깔</th>
+      <th>꽃 가격</th>
+    </tr>
+    <% orders.forEach(function(order) { %>
+      <tr>
+        <td><%= order.name %></td>
+        <td><%= order.color %></td>
+        <td><%= order.price %></td>
+      </tr>
+    <% }); %>
+  </table>
+</body>
+</html>

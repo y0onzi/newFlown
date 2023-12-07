@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>주문</h1>
+  <table>
+    <tr>
+      <th>가게이름</th>
+      <th>총 결제 금액</th>
+      <th>주문일자</th>
+      <th>예상 수령일</th>
+      <th>주문서</th>
+      <th>주문상태</th>
+    </tr>
+    <% orders.forEach(function(order) { %>
+      <tr>
+        <td><%= order.order_id %></td>
+        <td><%= order.bouquetPrice %></td>
+        <td><%= formatDateTime(order.orderDate) %></td>
+        <td><%= formatDateTime(order.pickUpDate) %></td>
+        <td><a href="/buyer/myorder/<%= order.order_id%>">보기</a></td>
+        <td><%= order.orderStatus %></td>
+      </tr>
+    <% }); %>
+    <% function formatDateTime(dateTime) { %>
+      <% const formattedDateTime = new Date(dateTime).toLocaleString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }); %>
+      <%= formattedDateTime %>
+    <% } %>
+  </table>
+</body>
+</html>

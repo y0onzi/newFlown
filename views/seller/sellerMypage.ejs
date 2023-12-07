@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller MyPage</title>
+ 
+  <style>
+    
+    /* Profile Styling */
+    .profile {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .profile img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .store-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .store-address,
+    .store-phone {
+      margin: 5px 0;
+    }
+
+    /* Button Group Styling */
+    .button-group {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+      flex-wrap: wrap;
+    }
+
+    .button-group button {
+      padding: 10px 40px;
+      margin: 0 10px;
+      border: 1px blue;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      cursor: pointer;
+      white-space: nowrap;
+      flex: 1 0 auto;
+    }
+
+    .updateProfile-button {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .updateProfile-button button {
+      padding: 10px 20px;
+      margin: 0;
+      border: none;
+      border-radius: 5px;
+      background-color:#f2f2f2;
+      cursor: pointer;
+    }
+
+  
+  </style>
+
+  <div class="profile">
+    <% if (seller) { %>
+    <h2 class="store-name"><%= seller.storeName %></h2>
+    <p class="store-address">
+      <%= seller.address_city %> <%= seller.address_district %> <%= seller.address_dong %> <%= seller.address_detail %> 
+    </p>
+    <p class="store-phone"><%= seller.storePhoneNumber %></p>
+    <% } %>
+  </div>
+
+ 
+ 
+
+  <div class="button-group">
+    <button class="product-management-button">
+      <a href="/seller/flowers">상품관리</a>
+    </button>
+    <button class="order-confirmation-button">
+      <a href="/seller/sellerOrders">주문확인</a>
+    </button>
+    <button class="notice-button">
+      <a href="/seller/notices">공지사항</a>
+    </button>
+    <button class="store-page-button">
+      <a href="/store/<%= sellerId %>">매장페이지</a></button>
+  </div>
+
+</body>
+
+</html>

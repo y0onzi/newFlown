@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>검색 결과</title>
+</head>
+<body>
+  <h1 class="pb-4">검색 결과</h1>
+  <% if (searchResults.length > 0) { %>
+    <ul class="list-group">
+      <% for (let i = 0; i < searchResults.length; i++) { %>
+        <li class="list-group-item">
+          <!-- <%= searchResults[i].storeName %>, -->
+          <a href="/store/<%= searchResults[i].seller_id %>"><%= searchResults[i].storeName %>,</a>
+        <%= searchResults[i].address_city %>, 
+        <%= searchResults[i].address_district %>, 
+        <%= searchResults[i].address_dong %>
+      </li>
+       
+        <br>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <p>검색 결과가 없습니다.</p>
+  <% } %>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!-- store.ejs-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flown</title>
+  <link rel="stylesheet" href="../../public/css/bouqet.css">
+</head>
+<body>
+  <header>
+    <!-- 가게 정보 표시 -->
+    <h1><strong>가게명:</strong> <%= storeName %></h1>
+    <p><strong>가게 전화번호:</strong> <%= storePhoneNumber %></p>
+    <p><strong>가게 주소:</strong> <%= storeAddress %></p>
+    <p><strong>별점:</strong> <%= storeRating %></p>
+    <p><strong>영업상태:</strong> <%= storeStatus %></p>
+  </header>
+
+  <main>
+    <!-- 각 페이지의 내용이 들어갈 자리 -->
+    <table class="table">
+  <tbody>
+      <tr>
+          <th>이름</th>
+          <th>가격</th>
+          <th>사진</th>
+      </tr>
+      <% for (let i = 0; i < flowers.length; i++) { %>
+        <tr>
+          <td><%= flowers[i].name %></td>
+          <td><%= flowers[i].price %></td>
+          <td><%= flowers[i].photo %></td>
+          <td>
+            <button onclick="goToQuantityPage('<%= flowers[i].flower_id %>')">꽃다발에 추가</button>
+          </td>
+        </tr>
+      <% } %>
+  </tbody>
+<button onclick="goToCart()">꽃다발로 이동하기</button>
+</table>
+
+  </main>
+
+  <!-- 클라이언트 측 JavaScript 코드 -->
+  <script>
+    // 수량 조절 페이지로 이동하는 함수
+    function goToQuantityPage(flowerId) {
+      window.location.href = '/bouquet/quantity/' + flowerId;
+    }
+
+
+
+    // 꽃다발로 이동하는 함수
+    function goToCart() {
+      window.location.href = '/bouquet';
+    }
+  </script>
+
+
+
+<footer>
+  <!-- 푸터 내용 -->
+  <p>&copy; 2023 Flown. All rights reserved.</p>
+</footer>
+</body>
+</html>

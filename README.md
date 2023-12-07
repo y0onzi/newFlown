@@ -1,2 +1,2 @@
-# newFlown
-2023 오픈소스 소프트웨어 - DevOps CI/CD 파이프라인 구축
+# flown
+2023 SSWU 서버시스템구축실습 10팀 - 나만의 꽃다발 주문 웹사이트 💐Flown 💐

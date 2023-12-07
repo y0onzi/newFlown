@@ -1,0 +1,52 @@
+
+
+<h1>공지사항</h1>
+
+
+<!-- 공지사항 목록 -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>공지 ID</th>
+      <th>제목</th>
+      <th>내용</th>
+      <th>작성일</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% notices.forEach(function(notice) { %>
+      <tr id="notice-<%= notice.notice_id %>">
+        <td class="notice-id"><%= notice.notice_id %></td>
+        <td class="notice-title"><%= notice.title %></td>
+        <td class="notice-content"><%= notice.content %></td>
+        <td class="notice-date"><%= formatDateTime(notice.date) %></td>
+      </tr>
+    <% }); %>
+    <% function formatDateTime(dateTime) { %>
+      <% const formattedDateTime = new Date(dateTime).toLocaleString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }); %>
+      <%= formattedDateTime %>
+    <% } %>
+  </tbody>
+</table>
+<button onclick="showAddForm()" id="addButton" class="btn btn-primary mb-3">등록</button>
+<!-- 공지사항 등록 폼 -->
+<div id="add-form" style="display: none;">
+  <h2 class="mb-3">공지사항 등록</h2>
+  <form id="add-notice-form" method="POST">
+    <input type="text" name="title" class="form-control mb-3" placeholder="제목" required>
+    <textarea name="content" class="form-control" placeholder="내용" required></textarea>
+    <br>
+    <button type="submit" class="btn btn-primary">완료</button>
+  </form>
+</div>
+
+
+<script>
+function showAddForm() {
+  var addForm = document.getElementById("add-form");
+  addForm.style.display = "block";
+}
+
+</script>
+</body>
+</html>

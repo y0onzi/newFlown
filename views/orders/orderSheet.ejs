@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Details</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+    <table class="mb-5">
+      <tr>
+        <th>꽃이름</th>
+        <th>수량</th>
+        <th>가격</th>
+      </tr>
+      <% orders.items.forEach(function(order) { %>
+        <tr>
+          <td><%= order.name %></td>
+          <td><%= order.flowerAmount %></td>
+          <td><%= order.price %></td>
+        </tr>
+      <% }); %>
+      <tr>
+        <td>Total Price: <%= orders.totalPrice %> 원</td>
+        <td colspan="2"></td>
+      </tr>
+    </table>
+
+    <form action="/orders/sheet" method="POST">
+        <div class="form-group mb-3">
+          <label>주문자 정보</label>
+          <input type="text" class="form-control mb-3" name="name" aria-describedby="emailHelp" placeholder="이름을 입력해주세요." required>
+          <input type="text" class="form-control" name="phoneNumber" placeholder="연락처를 입력해주세요" required>
+        </div>
+        <div class="form-group mb-3">
+            <label>희망 수령 날짜</label>
+            <input type="date" class="form-control"  name="pickupDate">        
+        </div>
+        <div class="form-group mb-3">
+          <label>사장님께 메모 남기기</label>
+          <input type="text" class="form-control" name="memo">
+        </div>
+        <input type="hidden" name="user" id="user" value="<%= sellerId %>"/>
+        <input type="hidden" name="id" id="id" value="<%= bouquetId %>"/>
+        <input type="hidden" name="totalPrice" id="totalPrice" value="<%= orders.totalPrice %>"/>
+
+        <button type="submit" class="btn btn-primary form-control">주문 신청하기</button>
+      </form>
+</body>
+</html>
