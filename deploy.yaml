@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flown
+  labels:
+    app: flown
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: flown
+  template:
+    metadata:
+      labels:
+        app: flown
+        tier: flown
+    spec:
+      containers:
+      - name: flown-test
+        image: y00nzi/web-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: flown
+        env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: flown-cm
+              key: DB_HOST
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: flown-cm
+              key: DB_USER
+        - name: DB_PW
+          valueFrom:
+            configMapKeyRef:
+              name: flown-cm
+              key: DB_PW
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: flown-cm
+              key: DB_PORT
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: flown-cm
+              key: DB_NAME
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flown
+  labels:
+    app: flown
+spec:
+  ports:
+    - port: 80
+      targetPort: 5000
+  selector:
+    app: flown
+    tier: flown
+  type: LoadBalancer
